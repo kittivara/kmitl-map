@@ -24,6 +24,6 @@
   "scripts": {
     "dev": "nodemon -V --watch ./src/**/*.ts --ignore ./src/**/*.spec.ts --exec ts-node ./src/app.ts",
     "start": "node ./build/app.js",
-    "heroku-postbuild": "knex migrate:latest"
+    "heroku-postbuild": "knex migrate:latest --env 'production'"
   }
 }
