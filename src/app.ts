@@ -56,4 +56,6 @@ app.use(async (ctx, next) => {
         next();
     }
 })
-app.listen(parseInt(process.env.PORT) | 3000, () => console.log('Koa app listening on ' + process.env.PORT));
+
+const PORT = parseInt(process.env.PORT) || 5000
+app.listen(PORT, () => console.log('Koa app listening on ' + PORT));
