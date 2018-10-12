@@ -6,12 +6,13 @@ import * as Knex from "knex";
 import * as Send from "koa-send";
 
 const DbConfig = require("../knexfile");
+const ENV = process.env.ENV || "development";
 
 const Db = () => {
     console.log("DB", 
         "Create connection using this configuration",
-        DbConfig[process.env.ENV || "development"]);
-    return Knex(DbConfig[process.env.ENV || "development"]);
+        DbConfig[ENV]);
+    return Knex(DbConfig[ENV]);
 }
 
 export const app = new Koa();
