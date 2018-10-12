@@ -23,7 +23,7 @@
   },
   "scripts": {
     "dev": "nodemon -V --watch ./src/**/*.ts --ignore ./src/**/*.spec.ts --exec ts-node ./src/app.ts",
-    "start": "node ./app.js",
+    "start": "node ./build/app.js",
     "heroku-postbuild": "NODE_ENV=production knex migrate:latest"
   }
 }
