@@ -20,10 +20,10 @@ module.exports = {
   production: {
     client: 'mysql',
     connection: {
-      host: '127.0.0.1',
-      user: 'your_database_user',
-      password: 'your_database_password',
-      database: 'myapp_test'
+      host: 's54ham9zz83czkff.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+      user: '	k4fjl6w6vb9ljpx6',
+      password: '	agqp8a85nqxw2jp1',
+      database: '	h4nylp2b6m7zy8mz'
     },
     pool: {
       min: 2,
