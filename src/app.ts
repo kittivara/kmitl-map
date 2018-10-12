@@ -6,7 +6,7 @@ import * as Knex from "knex";
 import * as Send from "koa-send";
 
 const DbConfig = require("../knexfile");
-const ENV = process.env.ENV || "development";
+const ENV = process.env.NODE_ENV || "development";
 
 const Db = () => {
     console.log("DB", 
