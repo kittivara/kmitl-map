@@ -56,4 +56,4 @@ app.use(async (ctx, next) => {
         next();
     }
 })
-app.listen(3000, () => console.log('Koa app listening on 3002'))
+app.listen(parseInt(process.env.PORT) | 3000, () => console.log('Koa app listening on 3002'))
