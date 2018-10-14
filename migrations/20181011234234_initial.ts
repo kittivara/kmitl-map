@@ -11,7 +11,6 @@ exports.up = (knex: Knex) => {
         table.increments("ID").primary();
         table.string("DisplayName").notNullable();
         table.string("PolygonArea").notNullable();
-        table.string("BuidingImage").notNullable();
         table.integer("AreaID").unsigned().notNullable();
     })
     .createTable("Floor",(table) =>{
