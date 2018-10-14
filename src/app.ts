@@ -48,8 +48,12 @@ areaRouter
     const db = Db();
 
     const response = await db.table("Building").where({AreaID: parseInt(ctx.params.id)});
-    response.PolygonArea = JSON.parse(response.PolygonArea);
     db.destroy();
+
+    response.forEach((e: any) => {
+        e.PolygonArea = JSON.parse(e.PolygonArea)
+    });
+    
     ctx.response.body = response;
     ctx.response.status = 200;
 });

@@ -3,10 +3,10 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      database: 'kmitl-map'
+      host: 's54ham9zz83czkff.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+      user: 'k4fjl6w6vb9ljpx6',
+      password: 'yv7g64u9tp3w4nbe',
+      database: 'h4nylp2b6m7zy8mz'
     },
     pool: {
       min: 2,
