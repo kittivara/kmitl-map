@@ -32,7 +32,7 @@ areaRouter
     const db = Db();
 
     const response = await db.table("Area");
-
+    db.destroy();
     ctx.response.body = response;
     ctx.response.status = 200;
 })
@@ -40,7 +40,7 @@ areaRouter
     const db = Db();
 
     const response = await db.table("Area").where({id: parseInt(ctx.params.id)}).first();
-
+    db.destroy();
     ctx.response.body = response;
     ctx.response.status = 200;
 })
@@ -49,6 +49,7 @@ areaRouter
 
     const response = await db.table("Building").where({AreaID: parseInt(ctx.params.id)});
     response.PolygonArea = JSON.parse(response.PolygonArea);
+    db.destroy();
     ctx.response.body = response;
     ctx.response.status = 200;
 });
