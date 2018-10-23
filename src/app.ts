@@ -60,7 +60,7 @@ areaRouter
 .get("Get floor of area", "/areas/:id/buildings/floor", async (ctx: Koa.Context, next: Router.IMiddleware) => {
     const db = Db();
 
-    const response = await db.table("Building").where({AreaID: parseInt(ctx.params.id)});
+    const response = await db.table("Floor").where({BuildingID: parseInt(ctx.params.id)});
     db.destroy();
 
     response.forEach((e: any) => {
