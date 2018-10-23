@@ -57,33 +57,51 @@ areaRouter
     ctx.response.body = response;
     ctx.response.status = 200;
 })
-.get("Get floor of area", "/areas/:id/buildings/:id/floors", async (ctx: Koa.Context, next: Router.IMiddleware) => {
+.get("Get floor of area", "/areas/:areaID/buildings/:buildingID/floors", async (ctx: Koa.Context, next: Router.IMiddleware) => {
     const db = Db();
+    const building = await db.table("Building").where({AreaID: parseInt(ctx.params.areaID)}).first();
 
-    const response = await db.table("Floor").where({BuildingID: parseInt(ctx.params.id)});
+    if(!building) {
+        ctx.response.status = 404;
+        ctx.response.body = {
+            error: "Resource not found."
+        };
+        return;
+    }
+
+    const floors = await db.table("Floor").where({BuildingID: parseInt(ctx.params.buildingID)});
     db.destroy();
 
-    response.forEach((e: any) => {
+    floors.forEach((e: any) => {
         e.PolygonArea = JSON.parse(e.PolygonArea)
     })
     
     
-    ctx.response.body = response;
+    ctx.response.body = floors;
     ctx.response.status = 200;
 })
 
-.get("Get room of area", "/areas/:id/buildings/:id/floors/:id/rooms", async (ctx: Koa.Context, next: Router.IMiddleware) => {
+.get("Get room of area", "/areas/:id/buildings/:buildingID/floors/:floorID/rooms", async (ctx: Koa.Context, next: Router.IMiddleware) => {
     const db = Db();
-
-    const response = await db.table("Room").where({FloorID: parseInt(ctx.params.id)});
+    
+    const building = await db.table("Building").where({AreaID: parseInt(ctx.params.areaID)}).first();
+    if(!building) {
+        ctx.response.status = 404;
+        ctx.response.body = {
+            error: "Resource not found."
+        };
+        return;
+    }
+    const floor =  await db.table("Floor").where({BuildingID: parseInt(ctx.params.buildingID)});
+    const room = await db.table("Room").where({FloorID: parseInt(ctx.params.floorID)});
     db.destroy();
 
-    response.forEach((e: any) => {
+    room.forEach((e: any) => {
         e.PolygonArea = JSON.parse(e.PolygonArea)
     })
     
     
-    ctx.response.body = response;
+    ctx.response.body = room;
     ctx.response.status = 200;
 });
 
