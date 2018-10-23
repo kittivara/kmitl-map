@@ -65,7 +65,23 @@ areaRouter
 
     response.forEach((e: any) => {
         e.PolygonArea = JSON.parse(e.PolygonArea)
-    });
+    })
+    
+    
+    ctx.response.body = response;
+    ctx.response.status = 200;
+})
+
+.get("Get room of area", "/areas/:id/buildings/:id/floors/:id/rooms", async (ctx: Koa.Context, next: Router.IMiddleware) => {
+    const db = Db();
+
+    const response = await db.table("Room").where({FloorID: parseInt(ctx.params.id)});
+    db.destroy();
+
+    response.forEach((e: any) => {
+        e.PolygonArea = JSON.parse(e.PolygonArea)
+    })
+    
     
     ctx.response.body = response;
     ctx.response.status = 200;
