@@ -3,7 +3,7 @@ import * as Knex from "knex";
 exports.up = (knex: Knex) => {
     return knex.schema.alterTable("Floor", (table) => {
         table.renameColumn("EntryPoint", "ToUpstair"),
-        table.renameColumn("ExitPoint", "ToDownStair")
+        table.renameColumn("ExitPoint", "ToDownstair")
     });
 };
 
