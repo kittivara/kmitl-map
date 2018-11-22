@@ -77,6 +77,20 @@ areaRouter
     ctx.response.status = 200;
     next();
 })
+.get("Get rooms of floors", "/floors/:id/rooms", async (ctx, next) => {
+    const db = Db();
+
+    const room = await db.table("Room").where({FloorID: parseInt(ctx.params.id)});
+    db.destroy();
+
+    room.forEach((e: any) => {
+        e.PolygonArea = JSON.parse(e.PolygonArea)
+    });
+    
+    ctx.response.body = room;
+    ctx.response.status = 200;
+    next();
+})
 .get("Get floor of area", "/areas/:areaID/buildings/:buildingID/floors", async (ctx, next) => {
     const db = Db();
     const building = await db.table("Building").where({AreaID: parseInt(ctx.params.areaID)}).first();
